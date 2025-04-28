@@ -1,0 +1,493 @@
+@use '../helpers/' as *;
+
+.cards {
+  &__title {
+    font-family: var(--font-family-alternate);
+    text-align: center;
+
+    span {
+      color: var(--color-purple);
+    }
+
+    &--light {
+      font-family: var(--font-family-alternate);
+      position: relative;
+      text-align: center !important;
+      color: var(--color-light);
+      padding-top: rem(120);
+
+      @include tablet {
+        padding-top: rem(115);
+      }
+
+      @media (width <= rem(700)) {
+        padding-top: rem(70);
+      }
+
+      @media (width <= rem(500)) {
+        padding-top: rem(40);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: rem(100);
+        height: rem(7);
+        background-color: var(--color-purple);
+        left: 50%;
+        bottom: rem(-30);
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &-what {
+    margin-bottom: rem(50);
+    display: grid;
+    grid-template-columns: 26% 1fr;
+
+    @media (width <= rem(1000)) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @include mobile-s {
+      margin-bottom: rem(40);
+    }
+
+    .cards__title {
+      margin-top: rem(45);
+      text-align: left;
+      span {
+        margin-left: rem(15);
+      }
+
+      @media (width <= rem(1000)) {
+        margin-top: rem(0);
+        margin-bottom: rem(30);
+        text-align: center;
+      }
+    }
+
+    .cards__items {
+      padding-bottom: rem(25);
+    }
+
+    .cards__items-button {
+      margin-bottom: rem(40);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-orange);
+      grid-column: -2 / -1;
+      padding-block: rem(18);
+      color: var(--color-light);
+      font-family: var(--font-family-alternate);
+      font-size: rem(22);
+      font-weight: 700;
+      border-radius: var(--radii-15);
+      border: rem(3) solid var(--color-light);
+
+      @include tablet {
+        font-size: rem(18);
+        margin-bottom: rem(0);
+      }
+
+      @include hover {
+        background-color: var(--color-orange-accent);
+      }
+    }
+  }
+
+  &__items {
+    --columns: 1;
+
+    padding-top: rem(40);
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+
+    @include desktop {
+      padding-bottom: rem(100);
+    }
+
+    @include tablet {
+      padding-bottom: rem(0);
+    }
+
+    &--5-col {
+      --columns: 5;
+      column-gap: rem(20);
+
+      @include laptop {
+        margin-bottom: rem(0);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: rem(30);
+
+        @media (width <= rem(470)) {
+          row-gap: rem(15);
+        }
+      }
+
+      @media (width <= rem(500)) {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        row-gap: rem(40);
+      }
+
+      .cards__item {
+        display: grid;
+        row-gap: rem(18);
+        padding-inline: rem(35);
+        padding-block: rem(20);
+        border-radius: var(--radii-15);
+        box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.08);
+
+        @media (width <= rem(470)) {
+          justify-items: center;
+        }
+
+        &:first-child {
+          img {
+            scale: (1.5);
+            padding-top: rem(40);
+            transform: translate(8%, -17%);
+
+            @media (width <= rem(470)) {
+              transform: translate(0, -17%);
+            }
+          }
+        }
+
+        &:nth-child(2) {
+          img {
+            max-height: rem(170);
+            transform: translateY(rem(-20));
+          }
+          p {
+            transform: translateY(rem(-20));
+          }
+        }
+
+        &:last-child {
+          padding-top: 2.5rem;
+        }
+
+        @include laptop {
+          width: rem(250);
+        }
+
+        @include tablet {
+          width: rem(210);
+          padding-inline: rem(16);
+
+          @media (width <= rem(700)) {
+            width: minmax(rem(250), 1fr);
+          }
+        }
+
+        @include mobile {
+          width: 70%;
+        }
+
+        &-image {
+          max-width: 100%;
+        }
+
+        &-text {
+          text-align: center;
+          font-size: fluid(16, 14);
+        }
+      }
+
+      &-delivery {
+        .cards__items {
+          row-gap: rem(40);
+        }
+        .cards__item {
+          position: relative;
+          display: grid;
+          grid-template-rows: auto;
+          justify-items: center;
+          row-gap: rem(20);
+
+          &::after {
+            content: '';
+            background: var(--number);
+            background-position: center;
+            background-size: auto;
+            background-repeat: no-repeat;
+
+            position: absolute;
+            width: rem(40);
+            height: rem(40);
+            bottom: rem(-30);
+            left: 50%;
+            background-color: var(--color-purple);
+            border-radius: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+
+    &--3-col {
+      --columns: 3;
+      --rows: 3;
+
+      row-gap: rem(20);
+      column-gap: rem(30);
+
+      @media (width <= rem(580)) {
+        --columns: 2;
+      }
+
+      .cards__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        row-gap: rem(30);
+
+        &-image {
+          max-width: 100%;
+
+          &:nth-child(3) {
+            position: relative;
+
+            &::after {
+              --width: rem(68);
+              --height: rem(35);
+
+              position: absolute;
+              content: '';
+              background-image: url(../../images/what/x3.svg);
+              width: var(--width);
+              height: var(--height);
+              top: 0;
+              right: 0;
+            }
+          }
+        }
+
+        &-link {
+          width: 100%;
+          display: block;
+          padding-block: rem(15);
+          padding-inline: rem(10);
+          text-align: center;
+          background-color: var(--color-light);
+          border-radius: var(--radii-15);
+          font-family: var(--font-family-alternate);
+          font-weight: 700;
+          font-size: rem(22);
+          box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.08);
+
+          @include tablet {
+            font-size: rem(16);
+            padding-block: rem(12);
+          }
+
+          @include mobile-s {
+            border-radius: rem(5);
+          }
+        }
+      }
+    }
+
+    &--3-col-wide {
+      --columns: 3;
+      column-gap: rem(30);
+      align-items: flex-start;
+
+      @media (width <= rem(700)) {
+        --columns: 1;
+
+        row-gap: rem(30);
+      }
+
+      @include mobile {
+        row-gap: rem(20);
+      }
+
+      .cards__item {
+        --width: rem(386);
+        padding: rem(10);
+        row-gap: rem(10);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (width <= rem(700)) {
+          --width: rem(500);
+          padding: rem(20);
+        }
+
+        &-image {
+          size: rem(120);
+
+          margin-bottom: rem(25);
+          display: flex;
+          padding: rem(30);
+          background-color: var(--color-light);
+          border-radius: 100%;
+          box-shadow: var(--shadow-08);
+
+          @include tablet {
+            margin-bottom: rem(35);
+          }
+
+          @include mobile {
+            margin-bottom: rem(25);
+          }
+
+          img {
+            max-width: 100%;
+          }
+        }
+
+        &-title {
+          max-width: rem(386);
+          padding-bottom: rem(20);
+          margin-bottom: rem(20);
+          border-bottom: rem(1) solid #eaeaea;
+          text-align: center;
+          font-size: rem(18);
+          font-weight: 700;
+
+          span {
+            color: var(--color-purple);
+          }
+
+          @include tablet {
+            max-width: rem(210);
+            font-size: rem(16);
+          }
+
+          @media (width <= rem(700)) {
+            max-width: rem(400);
+            padding-bottom: rem(16);
+            margin-bottom: rem(15);
+          }
+
+          @include mobile {
+            max-width: rem(300);
+          }
+        }
+
+        &-text {
+          p {
+            justify-self: flex-end;
+            max-width: rem(386);
+            text-align: center;
+
+            @include tablet {
+              font-size: rem(14);
+            }
+          }
+        }
+      }
+    }
+
+    &--4-col {
+      --columns: 4;
+      --rows: 2;
+
+      row-gap: rem(45);
+      column-gap: rem(30);
+      margin-top: rem(35);
+      margin-bottom: 0;
+      padding-bottom: rem(300);
+
+      @include desktop {
+        --columns: 2;
+        --rows: auto;
+
+        padding-inline: rem(50);
+        column-gap: rem(50);
+      }
+
+      @include tablet {
+        row-gap: rem(30);
+        padding-bottom: rem(250);
+        padding-inline: rem(20);
+      }
+
+      @media (width <= rem(700)) {
+        padding-inline: rem(50);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: rem(20);
+      }
+
+      @media (width <= rem(500)) {
+        padding-inline: rem(10);
+        padding-bottom: rem(50);
+      }
+
+      .cards__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: rem(20);
+
+        @include desktop {
+          justify-content: start;
+        }
+
+        &-image {
+          --size: rem(74);
+
+          padding: rem(20);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--color-light);
+          border-radius: 100%;
+
+          @media (width <= rem(500)) {
+            --size: rem(60);
+            padding: rem(10);
+          }
+
+          img {
+            max-width: 100%;
+            min-width: rem(40);
+            min-height: rem(40);
+
+            @media (width <= rem(500)) {
+              min-width: rem(32);
+              min-height: rem(32);
+            }
+          }
+        }
+
+        &-text {
+          font-family: var(--font-family-alternate);
+          font-size: rem(18);
+          font-weight: 700;
+          color: var(--color-light);
+
+          @include mobile-s {
+            font-size: rem(16);
+          }
+        }
+      }
+    }
+
+    &-want {
+      &__title {
+        margin-bottom: rem(55);
+      }
+    }
+  }
+}

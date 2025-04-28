@@ -1,0 +1,40 @@
+@use '../helpers/' as *;
+
+
+
+.us {
+    padding-top: rem(60);
+    padding-bottom: rem(85);
+
+    @include mobile {
+        padding-top: rem(30);
+        padding-bottom: rem(55);
+    }
+
+
+    &__title {
+        margin-bottom: rem(40);
+        text-align: center;
+
+        @include tablet {
+            margin-bottom: rem(25);
+        }
+
+        span {
+            color: var(--color-purple);
+        }
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(50);
+
+        @include tablet {
+            row-gap: rem(40);
+        }
+    }
+}
+
+
+

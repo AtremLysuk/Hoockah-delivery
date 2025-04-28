@@ -1,0 +1,28 @@
+@use '../helpers/' as *;
+
+
+.button {
+    max-width: rem(211);
+    height: rem(56);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: rem(14);
+    border-radius: rem(25);
+    color: var(--color-light);
+    font-size: rem(18);
+    text-transform: uppercase ;
+    background-color: var(--color-orange);
+    border: rem(3) solid var(--color-light);
+    filter: drop-shadow(rem(0) rem(0) rem(10) var(--color-orange));
+    cursor: pointer;
+
+
+    @include hover{
+        color: var(--color-light);
+        background-color: var(--color-orange-accent);
+        filter: drop-shadow(rem(0) rem(0) rem(15) var(--color-orange-accent));
+    }
+
+}
+

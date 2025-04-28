@@ -1,0 +1,17 @@
+@use '../helpers/' as *;
+
+.why {
+
+    &__inner-wide {
+        background: var(--whyBg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__inner-cards{
+        
+    }
+}
+
+

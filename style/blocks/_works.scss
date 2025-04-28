@@ -1,0 +1,121 @@
+@use '../helpers/' as *;
+
+.works {
+  &__inner {
+    padding-top: rem(80);
+    padding-bottom: rem(100);
+
+    @include desktop {
+      padding-bottom: rem(0);
+    }
+
+    @include tablet {
+      padding-top: rem(60);
+      padding-bottom: rem(80);
+    }
+
+    @include mobile {
+      padding-top: rem(40);
+      padding-bottom: rem(60);
+    }
+  }
+
+  &__inner-content {
+  }
+}
+
+.inner-content {
+  &__title {
+    margin-bottom: rem(40);
+
+    span {
+        margin-right: rem(15);
+        color: var(--color-purple);
+    }
+
+    @include tablet {
+      margin-bottom: rem(20);
+    }
+
+    @include mobile {
+      margin-bottom: rem(14);
+    }
+  }
+
+  &__box {
+    display: grid;
+    grid-template-columns: 1fr 22%;
+    column-gap: rem(100);
+
+    @media(width <= rem(900)){
+        column-gap: rem(50);
+    }
+
+    @media (width <= rem(900)) {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(25);
+    }
+  }
+
+  &__box-text {
+
+    p + p {
+        font-weight: 600;
+    }
+  }
+
+  &__box-blockquote {
+    max-width: rem(220);
+    font-family: var(--font-family-alternate);
+    font-weight: 700;
+    font-size: rem(24);
+
+    span {
+      color: var(--color-purple);
+    }
+
+    @media (width <= rem(900)) {
+        max-width: 100%;
+    }
+
+    @include mobile {
+      font-size: rem(20);
+    }
+  }
+}
+
+.cards {
+  padding-block: rem(85);
+
+  @include tablet {
+    padding-block: rem(60);
+  }
+
+  @include mobile {
+    padding-block: rem(40);
+  }
+
+  &__title {
+    text-align: left;
+    font-weight: 700;
+  }
+
+  &__items {
+  }
+
+  &__items--5-col {
+  }
+
+  &__item {
+  }
+
+  &__item-image {
+  }
+
+  &__item-content {
+  }
+
+  &__item-text {
+  }
+}

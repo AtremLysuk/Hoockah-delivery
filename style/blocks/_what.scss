@@ -1,0 +1,9 @@
+@use '../helpers/' as *;
+
+.what {
+
+    &__wrapper {
+        background: var(--whatBg) center/cover no-repeat;
+    }
+
+}

@@ -1,0 +1,105 @@
+@use '../helpers/' as *;
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  column-gap: rem(6);
+  cursor: pointer;
+
+
+
+  @keyframes myAnim {
+    0%,
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 50% 50%;
+    }
+  
+    10% {
+      transform: rotate(8deg);
+    }
+  
+    20%,
+    40%,
+    60% {
+      transform: rotate(-10deg);
+    }
+  
+    30%,
+    50%,
+    70% {
+      transform: rotate(10deg);
+    }
+  
+    80% {
+      transform: rotate(-8deg);
+    }
+  
+    90% {
+      transform: rotate(8deg);
+    }
+  }
+
+  &::before {
+    --size: #{rem(24)};
+
+    @include square(var(--size));
+
+    content: '';
+    flex-shrink: 0;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &--phone {
+    &::before {
+      background-image: url(../../icons/phone.svg);
+
+      @media (width < rem(680)) {
+        --size: #{rem(46)};
+      }
+
+      @include mobile-s {
+        --size: #{rem(32)};
+      }
+    }
+
+    @include hover {
+      scale: (1.1);
+    }
+  }
+
+  &--facebook {
+    transition-duration: var(--transition-duration);
+    @include hover {
+      scale: 1.2;
+      animation: myAnim 2s ease 0s 1 normal forwards;
+    }
+
+
+    &::before {
+      --size: #{rem(36)};
+      background-image: url(../../icons/facebook.svg);
+    }
+  }
+
+  &--instagram {
+    @include hover {
+      scale: 1.2;
+      animation: myAnim 2s ease 0s 1 normal forwards;
+    }
+    &::before {
+      --size: #{rem(36)};
+      background-image: url(../../icons/instagremm.svg);
+
+    }
+  }
+
+  &--plus {
+    &::before {
+      --size: #{rem(50)};
+      background-image: url(../../icons/whitePlus.svg);
+    }
+  }
+}

@@ -1,0 +1,111 @@
+@use '../helpers/' as *;
+
+.footer {
+  background-color: #fcf9ff;
+
+  &__inner {
+    width: 100%;
+    padding-block: rem(45);
+    display: flex;
+    align-items: center;
+
+    @include laptop {
+      padding-block: rem(35);
+    }
+
+    @media(width <= rem(950)){
+      justify-content: space-between;
+    }
+
+    @media(width <= rem(550)){
+      flex-direction: column;
+      row-gap: rem(30);
+    }
+  }
+
+  &__logo {
+    --size: #{rem(110)};
+  }
+
+  &__box {
+    display: contents;
+
+    @media (width <= rem(950)) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__social-wrapper {
+    @media(width <= rem(550)){
+      justify-content: center;
+      align-items: center;
+      flex-direction: column-reverse;
+      row-gap: rem(30);
+      margin-left: 0;
+      margin-bottom: rem(25);
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: end;
+    column-gap: rem(20);
+  }
+
+  &__social-phone {
+    margin-left: rem(50);
+
+    @media(width <= rem(550)) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &::before {
+      --width: #{rem(20)};
+
+      width: var(--width);
+      height: var(--width);
+    }
+
+    span {
+      font-weight: 700;
+      font-size: rem(20);
+    }
+  }
+
+  &__info {
+    margin-left: auto;
+
+    @media(width <= rem(550)){
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      column-gap: rem(7);
+      padding-top: rem(50);
+      border-top: rem(1) solid #eaeaea;
+    }
+
+    &-city {
+      text-align: right;
+      justify-self: end;
+      font-weight: 700;
+    }
+
+    &-rights {
+      text-align: right;
+      justify-self: end;
+
+      @include tablet {
+        font-size: rem(14);
+      }
+
+      @media(width <= rem(550)) {
+        text-align: center;
+      }
+    }
+  }
+}
+
+

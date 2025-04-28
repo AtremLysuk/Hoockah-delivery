@@ -1,0 +1,46 @@
+@use '../helpers/' as *;
+
+.covid {
+  &__inner {
+  }
+
+  &__content {
+    margin-block: rem(80);
+    padding: rem(40);
+
+    background: var(--covidBg) center/cover no-repeat;
+    border-radius: var(--radii-15);
+
+    @media(width <= rem(580)) {
+      text-align: center;
+      padding-block: rem(30);
+      padding-inline: rem(15);
+      margin-block: rem(10);
+    }
+
+  }
+
+  &__title {
+    font-family: var(--font-family-alternate);
+    font-size: rem(32);
+    font-weight: 700;
+    color: var(--color-light);
+
+    @include tablet {
+      text-align: center;
+      font-size: rem(20);
+    }
+  }
+
+  &__text > p {
+    max-width: rem(510);
+    text-align: left;
+    color: var(--color-light);
+
+    @include tablet {
+      max-width: 100%;
+      text-align: center;
+      font-size: rem(14);
+    }
+  }
+}

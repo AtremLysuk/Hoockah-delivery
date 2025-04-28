@@ -1,0 +1,38 @@
+@use 'helpers' as *;
+
+:root {
+  // colors
+  --color-light: #ffffff;
+
+  --color-dark: #191919;
+  --color-gray-dark: #404040;
+  --color-gray-light: #b4b4b4;
+
+
+  --color-purple: #9b51e0;    
+
+  --color-orange: #f2994a;
+  --color-orange-accent: #ec7d1c;
+  --color-red: #ff5500;
+
+
+  --border: 1px solid #dedede;
+  --radii-10: #{rem(10)};
+  --radii-15: #{rem(15)};
+
+  --shadow-08: 0 4px 30px 0 rgba(0, 0, 0, 0.08);
+  --shadow-025: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+  // typography
+
+  --font-family-base: 'Montserrat', sans-serif;
+  --font-family-alternate: 'Montserrat Alternates', sans-serif;
+
+  --container-width: #{rem(1220)};
+  --container-padding-x: #{rem(16)};
+
+  --container-width-wide: #{rem(1920)};
+
+
+  --transition-duration: 0.2s;
+}
