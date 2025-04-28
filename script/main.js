@@ -111,18 +111,18 @@ const chooseButtons = document.querySelectorAll('[data-js-choose-button]');
 const orderPopup = document.querySelector('[data-js-order-popup]');
 const orderSubmitButton = orderPopup.querySelector('[data-js-order-button]');
 const close = orderPopup.querySelector('[data-js-order-close]');
+const closeAgree = orderPopup.querySelector('[data-js-order-close-agree]');
 const closeOnMobile = orderPopup.querySelector('[data-js-order-close-mobile]');
+const closeAgreeOnMobile = document.querySelector('[data-js-order-close-agree-mobile]');
 const chooseWrapper = document.querySelector('.choose-order__wrapper');
-
-
 const detailsElement = document.querySelector('.order__form-details');
-
+const agreePopup = document.querySelector('[data-js-order-popup-agree]');
 const body = document.body;
 
-function findCoords() {
+function findCoords(el) {
   const top = window.pageYOffset + 'px';
-  orderPopup.style.top = top;
-  orderPopup.style.left = 0;
+  el.style.top = top;
+  el.style.left = 0;
   console.log(top);
 }
 
@@ -131,7 +131,9 @@ function closePopup() {
     if (e.target === close || !e.target.closest('.choose-order__inner')) {
       body.classList.remove('is-lock');
       orderPopup.classList.add('visually-hidden');
+      orderPopup.classList.remove('is-open')
       detailsElement.removeAttribute('open');
+
     }
     if (
       e.target === closeOnMobile ||
@@ -140,13 +142,14 @@ function closePopup() {
       body.classList.remove('is-lock');
       orderPopup.classList.add('visually-hidden');
       detailsElement.removeAttribute('open');
+
+
     }
   });
 
   orderSubmitButton.addEventListener('click', () => {
-    console.log('click')
     onAgree();
-  })
+  });
 }
 
 chooseButtons.forEach((chooseButton) => {
@@ -163,39 +166,45 @@ chooseButtons.forEach((chooseButton) => {
     const orderImage = document.querySelector('[data-js-order-form-image]');
 
     const popupInner = document.querySelector('.choose-order__inner');
-    findCoords();
+    findCoords(orderPopup);
     body.classList.add('is-lock');
     orderPopup.classList.remove('visually-hidden');
 
-    orderTitle.textContent = title;
-    orderDesc.textContent = subtitle;
-    orderPrice.textContent = `$${price}`;
-    orderImage.src = imgSrc;
+    if (orderTitle) {
+      orderTitle.textContent = title;
+      orderDesc.textContent = subtitle;
+      orderPrice.textContent = `$${price}`;
+      orderImage.src = imgSrc;
+    }
 
     closePopup();
   });
 });
 
-
-
 function onAgree() {
-  const thankPoppupElement = document.createElement('div');
-  thankPoppupElement.insertAdjacentHTML(
-    'afterbegin',
-    ` 
-      <button class="choose-order__close" data-js-order-close></button>
-      <div class="choose-order__inner">
-        <div class="choose-order__agree">
-          <img class="choose-order__agree-image" src="../../images/order/galochkasvg.svg" alt="" width="114" height="86" loading="lazy">
-          <h4 class="choose-order__agree-title">Thank you for order!</h4>
-          <div class="choose-order__agree-text">
-            <p>We will contact you soon!</p>
-          </div>
-        </div>
-      </div>
 
-    `
-  );
 
-  chooseWrapper.replaceWith(thankPoppupElement)
+  agreePopup.classList.remove('visually-hidden')
+  findCoords(agreePopup)
+  orderPopup.classList.add('visually-hidden')
+  closeAgreePopup()
+}
+
+function closeAgreePopup () {
+  agreePopup.addEventListener('click', (e) => {
+    if (e.target === closeAgree || !e.target.closest('.order-agree__inner')) {
+      body.classList.remove('is-lock');
+      agreePopup.classList.add('visually-hidden');
+      detailsElement.removeAttribute('open');
+    }
+    if (
+      e.target === closeAgreeOnMobile ||
+      !e.target.closest('.order-agree__inner')
+    ) {
+      body.classList.remove('is-lock');
+      agreePopup.classList.add('visually-hidden');
+      detailsElement.removeAttribute('open');
+    }
+  });
+
 }
