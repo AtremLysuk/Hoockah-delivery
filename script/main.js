@@ -163,7 +163,6 @@ chooseButtons.forEach((chooseButton) => {
     const orderDesc = document.querySelector('.order-card__desc');
     const orderPrice = document.querySelector('.order-card__price');
     const orderImage = document.querySelector('[data-js-order-form-image]');
-    const popupInner = document.querySelector('.choose-order__inner');
 
 
     findCoords(orderPopup);
