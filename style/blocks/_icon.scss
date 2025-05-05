@@ -6,35 +6,33 @@
   column-gap: rem(6);
   cursor: pointer;
 
-
-
   @keyframes myAnim {
     0%,
     100% {
       transform: rotate(0deg);
       transform-origin: 50% 50%;
     }
-  
+
     10% {
       transform: rotate(8deg);
     }
-  
+
     20%,
     40%,
     60% {
       transform: rotate(-10deg);
     }
-  
+
     30%,
     50%,
     70% {
       transform: rotate(10deg);
     }
-  
+
     80% {
       transform: rotate(-8deg);
     }
-  
+
     90% {
       transform: rotate(8deg);
     }
@@ -77,7 +75,6 @@
       animation: myAnim 2s ease 0s 1 normal forwards;
     }
 
-
     &::before {
       --size: #{rem(36)};
       background-image: url(../../icons/facebook.svg);
@@ -91,7 +88,7 @@
     }
     &::before {
       --size: #{rem(36)};
-      background-image: url(../icons/instagremm.svg);
+      background-image: url(../../icons/instagremm.svg);
 
     }
   }
