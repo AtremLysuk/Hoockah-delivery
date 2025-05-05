@@ -327,3 +327,7 @@ const phone = document.querySelector('[data-js-input-mask]');
 IMask(phone, {
   mask: phone.dataset.jsInputMask,
 });
+
+function hello() {
+  console.log("hello")
+}
