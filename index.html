@@ -909,25 +909,39 @@
             class="choose-order__close-mobile"
             data-js-order-close-mobile
           ></button>
-          <form class="choose-order__form order__form" data-js-order-form>
+          <form
+            class="choose-order__form order__form"
+            data-js-order-form
+            novalidate
+          >
             <input
+              tabindex="1"
+              pattern="^[а-яА-ЯёЁa-zA-Z]+$"
               name="name"
-              id="name"
-              class="order__form-name"
+              id="input__name"
+              class="order__form-input order__form-name form__type-input"
               type="text"
               aria-label="Name"
               required
+              minlength="3"
               placeholder="Artem"
+              title="Name"
+              data-error-message="Поле может сержать только буквенные символы"
             />
+            <span class="form-error input__name-error" id="name-error"></span>
             <input
+              tabindex="2"
               name="phone"
-              id="phone"
-              class="order__form-phone"
+              id="input__phone"
+              class="order__form-input order__form-phone form__type-input"
               type="tel"
               aria-label="Phone Number"
               required
               placeholder="(888) 888-88-88"
+              data-error-message="Wrong phone number"
+              data-js-input-mask="(000) 000-00-00"
             />
+            <span class="form-error input__phone-error" id="phone-error"></span>
             <h5 class="order__form-title">Your order:</h5>
             <div class="order__form-card order-card">
               <div class="order-card__image">
@@ -948,41 +962,20 @@
               </div>
               <p class="order-card__price">$75</p>
             </div>
-            <details class="order__form-details form-details">
-              <summary class="form-details__summary">
-                <span
-                  class="form-details__titie"
-                  aria-details="Details"
-                  role="term"
-                  >Details</span
-                >
-              </summary>
-              <div class="form-details-content">
-                <div class="form-details__body">
-                  <input
-                    class="form-details__body-addres"
-                    type="text"
-                    placeholder="Delivery address"
-                  />
-                  <input
-                    class="form-details__body-date"
-                    type="text"
-                    placeholder="Delivery date and time"
-                  />
-                  <textarea
-                    class="form-details__body-message"
-                    placeholder="Write the hookahs and flavors you want"
-                  ></textarea>
-                </div>
-              </div>
-            </details>
             <button
-              type="button"
+              tabindex="6"
+              type="submit"
               class="order__form-button button"
               data-js-order-button
             >
               Order service
             </button>
+            <span
+              class="form__empty-error"
+              id="empty-error"
+              aria-live="assertive"
+            >
+            </span>
           </form>
         </div>
       </div>
@@ -1013,7 +1006,8 @@
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="script/main.js" type="module" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" defer ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/7.6.1/imask.min.js" defer ></script>
+    <script src="script/main.js" type="module" defer ></script>
   </body>
 </html>

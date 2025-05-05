@@ -12,6 +12,7 @@
     "sass": "^1.86.0"
   },
   "dependencies": {
+    "imask": "^7.6.1",
     "swiper": "^11.2.6"
   },
   "description": ""

@@ -2,7 +2,7 @@
 
 .choose-order {
   min-height: 100vh;
-  padding-block: rem(100);
+  padding-block: rem(50);
   position: absolute;
   left: 0;
   right: 0;
@@ -15,16 +15,16 @@
   &__inner {
     position: relative;
     margin-inline: auto;
-    padding: rem(30) rem(100);
+    padding: rem(30) rem(50);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: rem(600);
-    width: rem(600);
+    max-height: 90%;
+    max-width: rem(600);
     border-radius: 15px;
     background-color: var(--color-light);
-
-
+    overflow-y: scroll;
+  
     @media(width <= rem(650)){
       max-width: 85%;
       padding-inline: rem(30);
@@ -60,7 +60,7 @@
     background-color: transparent;
     border: none;
 
-    @media (width <= rem(480)) {
+    @media (width <= rem(767)) {
       @include visually-hidden;
     }
 
@@ -74,7 +74,7 @@
       background: url(../../images/order/close-mobile.svg) center/cover no-repeat;
       cursor: pointer;
 
-      @media(width >= rem(480)){
+      @media(width >= rem(767)){
         @include visually-hidden;
       }
 
@@ -83,6 +83,7 @@
   }
 
   &__agree {
+    max-width: rem(550);
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -107,11 +108,27 @@
     }
   }
 }
+
 .order {
   &__form {
     display: flex;
     flex-direction: column;
-    row-gap: rem(15);
+    row-gap: rem(10);
+
+    &-input {
+      position: relative;
+
+      &::after{
+        content: '';
+        position: absolute;
+
+        top: 0;
+        right: 0;
+        width: rem(10);
+        height: rem(10);
+        background: url(../../images/required.svg) center/cover no-repeat;
+      }
+    }
 
     @include mobile {
       row-gap: rem(10);
@@ -164,6 +181,7 @@
     }
   }
 }
+
 .order-card {
   padding-block: rem(13);
   padding-inline: rem(20);
@@ -231,68 +249,6 @@
   }
 }
 
-.form-details {
-  padding-block: rem(16);
-  border-top: var(--border);
-  border-bottom: var(--border);
-
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: all .7s ease;
-
-  &__summary {
-    position: relative;
-    display: block;
-    font-weight: 700;
-
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: calc(100% - rem(20));
-      top: calc(50% - rem(5));
-      width: rem(9);
-      height: rem(9);
-      background: url(../../images/order/details-arrow.png) center/cover
-        no-repeat;
-      transition-duration: var(--transition-duration);
-    }
-
-    @include mobile {
-      font-size: rem(14);
-    }
-  }
-
-  &__body {
-    margin-top: rem(12);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: rem(15);
-
-    &-message {
-      resize: vertical;
-      overflow-y: auto;
-      padding: rem(20);
-    }
-  }
-
-  &__body-addres,
-  &__body-date,
-  &__body-message {
-    width: 100%;
-    border-radius: 5px;
-    border: var(--border);
-  }
-}
-
-details[open] > summary::after {
-  rotate: 180deg;
-}
 
 .order-agree{
   min-height: 100vh;
@@ -309,13 +265,12 @@ details[open] > summary::after {
   &__inner {
     position: relative;
     margin-inline: auto;
-    padding: rem(30) rem(100);
+    padding: rem(50) rem(60);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: rem(600);
-    width: rem(600);
+    width: rem(500);
     border-radius: 15px;
     background-color: var(--color-light);
 
@@ -355,7 +310,7 @@ details[open] > summary::after {
     background-color: transparent;
     border: none;
 
-    @media (width <= rem(480)) {
+    @media (width <= rem(767)) {
       @include visually-hidden;
     }
 
@@ -369,7 +324,7 @@ details[open] > summary::after {
       background: url(../../images/order/close-mobile.svg) center/cover no-repeat;
       cursor: pointer;
 
-      @media(width >= rem(480)){
+      @media(width >= rem(767)){
         @include visually-hidden;
       }
     }
@@ -400,6 +355,42 @@ details[open] > summary::after {
     font-weight: 600;
   }
 }
+
+/* Для изменения цвета обводки элемента формы при валидации */
+.form__type-input-error {
+  border: rem(1) solid red;
+  background-color: rgb(255 134 48 / 0.1);
+}
+
+/* Для отображения span-элемента с ошибкой */
+.form__error-active {
+  display: block;
+}
+
+/* Для блокировки кнопки submit */
+.button-inactive {
+  cursor: default;
+  background-color: rgb(211 211 211 / 0.6);
+}
+
+.button-inactive {
+  cursor: not-allowed;
+  background-color: rgb(211 211 211 / 0.6);
+}
+
+.button-inactive:hover {
+  background-color: rgb(211 211 211 / 0.2);
+  border: rem(2) solid transparent;
+}
+
+.form__empty-error,
+.form-error {
+  padding: 0;
+  font-size: rem(14);
+  color: red;
+}
+
+
 
 
 

@@ -1,30 +1,32 @@
 //-------------- Slider ---------------
 
 new Swiper('.reviews__slider', {
+  // Optional parameters
   slidesPerView: 3,
-  slidesPerGroup: 3,
-  spaceBetween: 30,
-  autoWidth: true,
-  loop: false,
+  spaceBetween: 20,
+  loop: true,
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.slider-button-next',
+    prevEl: '.slider-button-prev',
+  },
 
   breakpoints: {
     // when window width is >= 320px
     320: {
       slidesPerView: 1,
-      slidesPerGroup: 1,
       spaceBetween: 20,
     },
 
-    768: {
+    900: {
       slidesPerView: 2,
-      slidesPerGroup: 2,
-      spaceBetween: 40,
+      spaceBetween: 30,
     },
-
-    1000: {
-      slidesPerView: 2,
-      slidesPerGroup: 1,
-      spaceBetween: 20,
+    
+    1200: {
+      slidesPerView: 3,
+      spaceBetween: 30,
     },
   },
 });
@@ -113,17 +115,18 @@ const orderSubmitButton = orderPopup.querySelector('[data-js-order-button]');
 const close = orderPopup.querySelector('[data-js-order-close]');
 const closeAgree = orderPopup.querySelector('[data-js-order-close-agree]');
 const closeOnMobile = orderPopup.querySelector('[data-js-order-close-mobile]');
-const closeAgreeOnMobile = document.querySelector('[data-js-order-close-agree-mobile]');
+const closeAgreeOnMobile = document.querySelector(
+  '[data-js-order-close-agree-mobile]'
+);
 const chooseWrapper = document.querySelector('.choose-order__wrapper');
-const detailsElement = document.querySelector('.order__form-details');
 const agreePopup = document.querySelector('[data-js-order-popup-agree]');
 const body = document.body;
+const orderForm = document.querySelector('[data-js-order-form]');
 
 function findCoords(el) {
   const top = window.pageYOffset + 'px';
   el.style.top = top;
   el.style.left = 0;
-  console.log(top);
 }
 
 function closePopup() {
@@ -131,9 +134,7 @@ function closePopup() {
     if (e.target === close || !e.target.closest('.choose-order__inner')) {
       body.classList.remove('is-lock');
       orderPopup.classList.add('visually-hidden');
-      orderPopup.classList.remove('is-open')
-      detailsElement.removeAttribute('open');
-
+      orderPopup.classList.remove('is-open');
     }
     if (
       e.target === closeOnMobile ||
@@ -142,13 +143,11 @@ function closePopup() {
       body.classList.remove('is-lock');
       orderPopup.classList.add('visually-hidden');
       detailsElement.removeAttribute('open');
-
-
     }
   });
 
-  orderSubmitButton.addEventListener('click', () => {
-    onAgree();
+  orderSubmitButton.addEventListener('click', (e) => {
+    startValidation();
   });
 }
 
@@ -164,8 +163,9 @@ chooseButtons.forEach((chooseButton) => {
     const orderDesc = document.querySelector('.order-card__desc');
     const orderPrice = document.querySelector('.order-card__price');
     const orderImage = document.querySelector('[data-js-order-form-image]');
-
     const popupInner = document.querySelector('.choose-order__inner');
+
+
     findCoords(orderPopup);
     body.classList.add('is-lock');
     orderPopup.classList.remove('visually-hidden');
@@ -177,20 +177,21 @@ chooseButtons.forEach((chooseButton) => {
       orderImage.src = imgSrc;
     }
 
+    orderForm.name.focus();
+    startValidation();
+
     closePopup();
   });
 });
 
 function onAgree() {
-
-
-  agreePopup.classList.remove('visually-hidden')
-  findCoords(agreePopup)
-  orderPopup.classList.add('visually-hidden')
-  closeAgreePopup()
+  agreePopup.classList.remove('visually-hidden');
+  findCoords(agreePopup);
+  orderPopup.classList.add('visually-hidden');
+  closeAgreePopup();
 }
 
-function closeAgreePopup () {
+function closeAgreePopup() {
   agreePopup.addEventListener('click', (e) => {
     if (e.target === closeAgree || !e.target.closest('.order-agree__inner')) {
       body.classList.remove('is-lock');
@@ -203,8 +204,123 @@ function closeAgreePopup () {
     ) {
       body.classList.remove('is-lock');
       agreePopup.classList.add('visually-hidden');
-      detailsElement.removeAttribute('open');
+    }
+  });
+}
+
+// Form validate
+
+const form = document.querySelector('[data-js-order-form]');
+
+const inputList = Array.from(form.querySelectorAll('.form__type-input'));
+
+const buttonElement = document.querySelector('[data-js-order-button]');
+const formErrorElement = form.querySelector('.form__empty-error');
+
+function startValidation() {
+  toggleButton();
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log('submit!!!');
+
+    if (hasInvalidInput()) {
+      formError();
+      inputList.forEach((inputElement) => {
+        checkInputValidity(inputElement);
+        toggleInputError(inputElement);
+      });
+    } else {
+      const formData = new FormData(form);
+      const orderItems = {
+        user: formData.get('name'),
+        phone: formData.get('phone'),
+      };
+
+      orderForm.name.value = '';
+      orderForm.phone.value = '';
+      orderForm.name.value = '';
+      onAgree();
     }
   });
 
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      checkInputValidity(inputElement);
+      toggleButton();
+    });
+    inputElement.addEventListener('blur', () => {
+      toggleInputError(inputElement);
+    });
+    inputElement.addEventListener('focus', () => {
+      toggleErrorSpan(inputElement);
+    });
+  });
 }
+
+function toggleInputError(inputElement) {
+  if (!inputElement.validity.valid) {
+    toggleErrorSpan(inputElement, inputElement.validationMessage);
+  } else {
+    toggleErrorSpan(inputElement);
+  }
+}
+
+function checkInputValidity(inputElement) {
+  if (inputElement.validity.patternMismatch) {
+    inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+  } else {
+    inputElement.setCustomValidity(checkLengthMismatch(inputElement));
+  }
+}
+
+function checkLengthMismatch(inputElement) {
+  if (inputElement.type !== 'text') {
+    return '';
+  }
+  const valueLength = inputElement.value.trim().length;
+  if (valueLength < inputElement.minLength) {
+    return `Минимальное количество символов: ${inputElement.minLength}`;
+  }
+  return '';
+}
+
+function hasInvalidInput() {
+  return inputList.some((inputElement) => !inputElement.validity.valid);
+}
+
+function toggleErrorSpan(inputElement, errorMessage) {
+  const errorElement = document.querySelector(`.${inputElement.id}-error`);
+  if (errorMessage) {
+    inputElement.classList.add('form__type-input-error');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('form__error-active');
+  } else {
+    inputElement.classList.remove('form__type-input-error');
+    errorElement.textContent = '';
+    errorElement.classList.remove('form__error-active');
+  }
+}
+
+function toggleButton() {
+  if (hasInvalidInput()) {
+    buttonElement.classList.add('button-inactive');
+    buttonElement.setAttribute('aria-disabled', 'true');
+  } else {
+    buttonElement.classList.remove('button-inactive');
+    buttonElement.setAttribute('aria-disabled', 'false');
+    formErrorElement.textContent = '';
+  }
+}
+
+function formError() {
+  const errorMessage = 'Заполните все поля для отправки формы.';
+  formErrorElement.textContent = errorMessage;
+}
+
+//Mask for phone input
+
+const phone = document.querySelector('[data-js-input-mask]');
+
+IMask(phone, {
+  mask: phone.dataset.jsInputMask,
+});
