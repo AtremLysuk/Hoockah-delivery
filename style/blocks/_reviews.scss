@@ -37,7 +37,6 @@
 
 .slider {
   position: relative;
-  // padding-bottom: rem(50);
 
   &-buttons {
     position: absolute;
@@ -98,7 +97,7 @@
     content: '';
 
     position: absolute;
-    background-image: url(../../images/slider/arrow-left.svg);
+    background-image: url(../images/slider/arrow-left.svg);
     background-position: center;
     background-repeat: no-repeat;
     width: rem(14);
@@ -109,11 +108,10 @@
 }
 
 .swiper-button-next {
-  // position: relative;
   &::after {
     content: '';
     position: absolute;
-    background-image: url(../../images/slider/arrow-right.svg);
+    background-image: url(../images/slider/arrow-right.svg);
     background-position: center;
     background-repeat: no-repeat;
     width: rem(14);
@@ -161,23 +159,16 @@
 
       @include square(var(--size));
 
-      background: url(../../images/slider/emptyStar.svg) center/contain
+      background: url(../images/slider/emptyStar.svg) center/contain
         no-repeat;
 
       &.is-active {
-        background-image: url(../../images/slider/star.svg);
+        background-image: url(../images/slider/star.svg);
       }
     }
   }
 }
 
-// .swiper-slide {
-//   flex-shrink: 1;
-
-//   @media (width <= rem(1000)) {
-//     flex-shrink: 0;
-//   }
-// }
 
 .swiper-slide.slider-slide.swiper-slide-active {
   display: flex;

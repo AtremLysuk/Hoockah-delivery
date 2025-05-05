@@ -303,7 +303,7 @@
     position: absolute;
     right: rem(35);
     top: rem(45);
-    background: url(../../images/order/close.svg) center/cover no-repeat;
+    background: url(./images/order/close.svg) center/cover no-repeat;
     width: rem(30);
     height: rem(30);
     cursor: pointer;
@@ -321,7 +321,7 @@
       top: rem(20);
       right: rem(20);
       border: none;
-      background: url(../../images/order/close-mobile.svg) center/cover no-repeat;
+      background: url(./images/order/close-mobile.svg) center/cover no-repeat;
       cursor: pointer;
 
       @media(width >= rem(767)){
