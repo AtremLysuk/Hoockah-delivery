@@ -55,6 +55,10 @@ const buttonsContent = [
   },
 ];
 
+function sayHello() {
+  console.log("hello")
+}
+
 const buttonsContainer = document.querySelector('[data-js-buttons]');
 
 const fakeDiv = document.querySelector('[data-js-fake]');
