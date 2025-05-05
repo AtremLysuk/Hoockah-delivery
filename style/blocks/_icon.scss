@@ -54,7 +54,7 @@
 
   &--phone {
     &::before {
-      background-image: url(../icons/phone.svg);
+      background-image: url(icons/phone.svg);
 
       @media (width < rem(680)) {
         --size: #{rem(46)};
@@ -80,7 +80,7 @@
 
     &::before {
       --size: #{rem(36)};
-      background-image: url(../icons/facebook.svg);
+      background-image: url(../../icons/facebook.svg);
     }
   }
 
