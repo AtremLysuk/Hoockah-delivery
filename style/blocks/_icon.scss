@@ -52,7 +52,7 @@
 
   &--phone {
     &::before {
-      background-image: url(icons/phone.svg);
+      background-image: url(../icons/phone.svg);
 
       @media (width < rem(680)) {
         --size: #{rem(46)};
@@ -96,7 +96,7 @@
   &--plus {
     &::before {
       --size: #{rem(50)};
-      background-image: url(./icons/whitePlus.svg);
+      background-image: url(../icons/whitePlus.svg);
     }
   }
 }
