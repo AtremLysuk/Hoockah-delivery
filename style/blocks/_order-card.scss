@@ -23,7 +23,6 @@
     max-width: rem(600);
     border-radius: 15px;
     background-color: var(--color-light);
-    overflow-y: scroll;
   
     @media(width <= rem(650)){
       max-width: 85%;
