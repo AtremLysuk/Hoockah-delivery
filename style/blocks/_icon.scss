@@ -80,7 +80,9 @@
       background-image: url(../icons/facebook.svg);
     }
   }
-
+  &-twitter{
+    
+  }
   &--instagram {
     @include hover {
       scale: 1.2;
