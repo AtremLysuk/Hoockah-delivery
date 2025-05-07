@@ -114,20 +114,6 @@
     flex-direction: column;
     row-gap: rem(10);
 
-    &-input {
-      position: relative;
-
-      &::after{
-        content: '';
-        position: absolute;
-
-        top: 0;
-        right: 0;
-        width: rem(10);
-        height: rem(10);
-        background: url(../images/required.svg) center/cover no-repeat;
-      }
-    }
 
     @include mobile {
       row-gap: rem(10);
