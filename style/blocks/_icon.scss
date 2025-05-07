@@ -98,6 +98,7 @@
   &--plus {
     &::before {
       --size: #{rem(50)};
+      flex-shrink: 0;
       background-image: url(../icons/whitePlus.svg);
     }
   }
