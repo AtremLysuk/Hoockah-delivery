@@ -396,7 +396,7 @@ a :focus-visible {
   background-repeat: no-repeat;
 }
 .icon--phone::before {
-  background-image: url(icons/phone.svg);
+  background-image: url(../icons/phone.svg);
 }
 @media (width < 42.5rem) {
   .icon--phone::before {
@@ -451,11 +451,11 @@ a :focus-visible {
 }
 .icon--instagram::before {
   --size: 2.25rem;
-  background-image: url(../../icons/instagremm.svg);
+  background-image: url(../icons/instagremm.svg);
 }
 .icon--plus::before {
   --size: 3.125rem;
-  background-image: url(./icons/whitePlus.svg);
+  background-image: url(../icons/whitePlus.svg);
 }
 
 .header__wrapper {
@@ -1821,7 +1821,7 @@ a :focus-visible {
 .swiper-button-next::after {
   content: "";
   position: absolute;
-  background-image: url(./images/slider/arrow-right.svg);
+  background-image: url(../images/slider/arrow-right.svg);
   background-position: center;
   background-repeat: no-repeat;
   width: 0.875rem;
@@ -1864,10 +1864,10 @@ a :focus-visible {
   --size: 1.0625rem;
   width: var(--size);
   height: var(--size);
-  background: url(./images/slider/emptyStar.svg) center/contain no-repeat;
+  background: url(../images/slider/emptyStar.svg) center/contain no-repeat;
 }
 .autor-rating__star.is-active {
-  background-image: url(./images/slider/star.svg);
+  background-image: url(../images/slider/star.svg);
 }
 
 .swiper-slide.slider-slide.swiper-slide-active {
