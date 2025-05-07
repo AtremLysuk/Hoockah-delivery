@@ -455,6 +455,7 @@ a :focus-visible {
 }
 .icon--plus::before {
   --size: 3.125rem;
+  flex-shrink: 0;
   background-image: url(../icons/whitePlus.svg);
 }
 
