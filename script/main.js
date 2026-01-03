@@ -199,7 +199,6 @@ function closeAgreePopup() {
     if (e.target === closeAgree || !e.target.closest('.order-agree__inner')) {
       body.classList.remove('is-lock');
       agreePopup.classList.add('visually-hidden');
-      detailsElement.removeAttribute('open');
     }
     if (
       e.target === closeAgreeOnMobile ||
@@ -224,7 +223,6 @@ function startValidation() {
   toggleButton();
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log('submit!!!');
 
     if (hasInvalidInput()) {
       formError();

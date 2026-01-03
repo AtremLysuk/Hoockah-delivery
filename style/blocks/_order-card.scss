@@ -23,7 +23,6 @@
     max-width: rem(600);
     border-radius: 15px;
     background-color: var(--color-light);
-    overflow-y: scroll;
   
     @media(width <= rem(650)){
       max-width: 85%;
@@ -53,7 +52,7 @@
     position: absolute;
     right: rem(35);
     top: rem(45);
-    background: url(../../images/order/close.svg) center/cover no-repeat;
+    background: url(../images/order/close.svg) center/cover no-repeat;
     width: rem(30);
     height: rem(30);
     cursor: pointer;
@@ -71,7 +70,7 @@
       top: rem(20);
       right: rem(20);
       border: none;
-      background: url(../../images/order/close-mobile.svg) center/cover no-repeat;
+      background: url(../images/order/close-mobile.svg) center/cover no-repeat;
       cursor: pointer;
 
       @media(width >= rem(767)){
@@ -115,20 +114,6 @@
     flex-direction: column;
     row-gap: rem(10);
 
-    &-input {
-      position: relative;
-
-      &::after{
-        content: '';
-        position: absolute;
-
-        top: 0;
-        right: 0;
-        width: rem(10);
-        height: rem(10);
-        background: url(../../images/required.svg) center/cover no-repeat;
-      }
-    }
 
     @include mobile {
       row-gap: rem(10);
@@ -303,7 +288,7 @@
     position: absolute;
     right: rem(35);
     top: rem(45);
-    background: url(./images/order/close.svg) center/cover no-repeat;
+    background: url(../images/order/close.svg) center/cover no-repeat;
     width: rem(30);
     height: rem(30);
     cursor: pointer;
@@ -321,7 +306,7 @@
       top: rem(20);
       right: rem(20);
       border: none;
-      background: url(./images/order/close-mobile.svg) center/cover no-repeat;
+      background: url(../images/order/close-mobile.svg) center/cover no-repeat;
       cursor: pointer;
 
       @media(width >= rem(767)){
